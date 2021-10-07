@@ -1,0 +1,59 @@
+.bg-black{
+    background-color: black;
+}
+
+.bg-verde-agua {
+    background-color: #56dbaf;
+}
+
+.bg-verde-agua:hover {
+    background-color: #44b18c;
+}
+
+.bg-roxo {
+    background-color: #b029ee;
+}
+
+.bg-roxo:hover {
+    background-color: #8d1ac2;
+}
+
+.bg-roxo-vivo {
+    background-color: #7696f5;
+}
+
+.bg-roxo-vivo:hover {
+    background-color: #4e72dd;
+}
+
+.bg-verde-agua a,
+.bg-roxo a,
+.bg-roxo-vivo a {
+    text-decoration: none;
+}
+
+.bg-lilas{
+    background-color: #fceeff;
+}
+
+.bg-roxoClaro-noHover{
+    background-color: #ed9dff;
+}
+
+.bg-roxo-noHover{
+    background-color: #7c33f0;
+}
+
+.bg-verde-noHover{
+    background-color: #4ff993;
+}
+
+.bg-verdeEscuro-noHover{
+    background-color: #5be090;
+
+}
+
+.bg-cinzaEscuro{
+    background-color: #fae3ff;
+}
+

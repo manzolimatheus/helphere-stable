@@ -1,0 +1,226 @@
+/* Bloco que mostra categorias */
+
+.bloco {
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  box-shadow: 10px 10px 30px -2px #a3a1a1;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.bloco h3 {
+  padding-top: 50%;
+}
+
+.bloco a {
+  color: black;
+  text-decoration: none;
+}
+
+.bloco a:hover {
+  text-decoration: underline;
+}
+
+.bloco-categoria {
+  background-repeat: no-repeat;
+}
+
+.bloco-categoria:hover {
+  transform: scale(1.1);
+}
+
+.bloco-categoria a {
+  color: white;
+}
+
+/* Scroll horizontal para as instituições */
+.wrapper {
+  display: flex;
+  overflow-x: auto;
+  padding: 3%;
+}
+
+.wrapper::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+  background: linear-gradient(13deg, #ddcced 14%, #e7e8f5 64%);
+  border-radius: 15px;
+}
+.wrapper::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(13deg, #c7ceff 14%, #e9d4ff 64%);
+}
+.wrapper::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+/* Listas */
+
+.lista-sem-decoracao {
+  list-style: none;
+}
+
+/* Perfil */
+
+/* Imagem de perfil */
+
+.img-perfil {
+  background-color: white;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.img-institute-perfil {
+  background-position-x: center;
+  background-position-y: center;
+  background-size: cover;
+  width: 100px;
+  height: 100px;
+}
+
+.img-institute-perfil:hover {
+  opacity: 0.9;
+}
+
+/* Cards */
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.coluna-responsive {
+  flex: 0 0 auto;
+  width: 33.3%;
+}
+
+@media (max-width: 768px) {
+  .coluna-responsive {
+    width: 50%;
+  }
+}
+.aba-dados-inicio {
+  margin-top: 20%;
+}
+
+/* Instituição */
+
+.mini-bloco {
+  width: 100px;
+  height: 100px;
+}
+
+.mini-bloco a {
+  color: white;
+  text-decoration: none;
+}
+
+.mini-bloco a:hover {
+  text-decoration: underline;
+}
+
+.mini-bloco h5 {
+  padding-top: 20%;
+}
+
+/* Inicio */
+
+.img-perfil-inicio {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  clip-path: circle();
+}
+
+.img-perfil-inicio:hover {
+  opacity: 0.9;
+}
+
+.texto {
+  font-size: 18pt;
+  font-weight: lighter;
+}
+
+/* Arrumando cards com imagem e capa */
+
+.background-fix {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card-image {
+  clip-path: circle();
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+/* POSTS */
+
+.col-post-foto {
+  flex: 0 0 auto;
+  width: 16.6666666667%;
+}
+
+.col-post-foto img {
+  clip-path: circle();
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.col-post-data {
+  flex: 0 0 auto;
+  width: 83.3333333333%;
+}
+
+@media (max-width: 768px) {
+  .col-post-foto {
+    width: 33.3333333333%;
+  }
+
+  .col-post-data {
+    width: 66.6666666667%;
+  }
+}
+
+.flash-message {
+  background-color: #e5ffe5;
+  text-align: center;
+}
+
+.container-helphere-login {
+  background-image: url("https://source.unsplash.com/daily");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.container-helphere-login img {
+  filter: brightness(0) invert(1);
+}
+
+@media (min-width: 768px) {
+  .bem-vindo {
+    margin-top: 40%;
+  }
+}
+
+
+.bg_video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+}
