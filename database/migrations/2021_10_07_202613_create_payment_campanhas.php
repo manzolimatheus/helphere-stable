@@ -21,10 +21,7 @@ class CreatePaymentCampanhas extends Migration
             $table->timestamps();
         });
 
-        schema::table('payment_campanhas', function (Blueprint $table) {
-            
-            $table->foreign('id_campanha')->references('id')->on('campanhas');
-        });
+       
     }
 
     /**
