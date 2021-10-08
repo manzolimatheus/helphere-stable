@@ -31,6 +31,7 @@ return array(
     'App\\Models\\Denuncias_user' => $baseDir . '/app/Models/Denuncias_user.php',
     'App\\Models\\Institute' => $baseDir . '/app/Models/Institute.php',
     'App\\Models\\Payment' => $baseDir . '/app/Models/Payment.php',
+    'App\\Models\\Payment_campanha' => $baseDir . '/app/Models/Payment_campanha.php',
     'App\\Models\\Post' => $baseDir . '/app/Models/Post.php',
     'App\\Models\\Posts_user' => $baseDir . '/app/Models/Posts_user.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
