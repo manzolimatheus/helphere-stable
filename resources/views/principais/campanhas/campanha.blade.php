@@ -20,7 +20,7 @@
                     @csrf
 
                     <div hidden>
-                        <label for="tel" class="mt-3">Id Da Instituição</label>
+                        <label for="tel" class="mt-3">Id Da campanha</label>
                         <input type="tel" name="id_campanha" id="id_campanha" value="{{ $campanha->id }}" class="form-control">
                     </div>
 
