@@ -185,6 +185,25 @@
                         <ion-icon name="calendar" class="me-2 text-muted"></ion-icon>
                         Essa instituição se encerra em {{date('d/m/Y', strtotime($campanha->data_fim))}}</p>
                 </div>
+
+                @if (Auth::id() == $campanha->id_criador)
+            <div class="col-sm-5 container bg-white rounded shadow p-3 mt-3 w-100 text-center" style="height: fit-content">
+                <p>
+
+                    <ion-icon name="cash-outline" class="me-2 text-muted"></ion-icon> Doações recebidas até agora!
+                <div class="text-center">
+
+                    <h3><strong>
+                            <ion-icon name="trending-up-outline" class="text-success"></ion-icon> R$ {{$paymentSum}}
+                        </strong></h3>
+                    </a>
+                </div>
+
+
+                </p>
+            </div>
+            @endif
+
                 <div class="row">
                     <div class="col">
                         <div class="container bg-white rounded shadow p-3 mt-3 w-100 text-center"
