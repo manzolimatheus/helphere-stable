@@ -857,12 +857,16 @@ class InstitutesController extends Controller
     {
         $usuario = auth()->user();
 
+        $paymentSum = DB::table('payment_campanhas')
+        ->where('id_campanha', '=', $id)
+        ->sum("valorDoado");
+
         DB::table('campanhas')->where('id', '=', $id)->increment('visualizacoes');
         $campanha = Campanha::findOrFail($id);
         $criador = User::where('id', $campanha->id_criador)->first()->toArray();
         $categoria = category_institute::where('id', $campanha->id_categoria)->first()->toArray();
 
-        return view('principais.campanhas.campanha', ['campanha' => $campanha, 'criador' => $criador, 'categoria' => $categoria, 'usuario' => $usuario]);
+        return view('principais.campanhas.campanha', ['campanha' => $campanha, 'criador' => $criador, 'categoria' => $categoria, 'usuario' => $usuario, 'paymentSum' => $paymentSum]);
     }
 
     public function delete_campanha($id)
