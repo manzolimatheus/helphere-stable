@@ -21,10 +21,6 @@ class CreatePayments extends Migration
             $table->timestamps();
         });
 
-        schema::table('payments', function (Blueprint $table) {
-            
-            $table->foreign('id_instituicao')->references('id')->on('institutes');
-        });
     
     }
 
