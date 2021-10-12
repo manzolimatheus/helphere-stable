@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use \vendor\autoload;
+use \App\Pix\config_pix;
+use \App\Pix\Payload;
 use App\Models\Institute;
 use App\Models\Payment;
 use App\Models\Payment_campanha;
@@ -18,6 +20,12 @@ use App\Models\Campanha;
 use BaconQrCode\Renderer\Color\Rgb;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+
+//bacon qrcode
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
 
 class InstitutesController extends Controller
 {
@@ -302,7 +310,7 @@ class InstitutesController extends Controller
         // Encontra instituição pelo id
         $institute = Institute::findOrFail($id);
 
-        // Pega o payment
+        // Pega o valor estipulado pelo doador
 
         $valorDoado = DB::table('payments')
             ->select('valorDoado')
@@ -311,9 +319,47 @@ class InstitutesController extends Controller
             ->whereRaw('id = (select max(id) from payments)')
             ->get();
 
+        foreach ($valorDoado as $vlr)
+
+            // GERA O VALOR DO TXID
+            $aleatorio = rand(25, 25);
+        $hash = substr(str_shuffle("AaBbCcDdEeFfGgHhIiJjKkLlMmNnPpQqRrSsTtUuVvYyXxWwZz0123456789"), 0, $aleatorio);
+
+        //SUBSTITUI ACENTOS E CARACTERES ESPECIAIS
+        function sanitizeString($string)
+        {
+
+            // matriz de entrada
+            $what = array('ä', 'ã', 'à', 'á', 'â', 'ê', 'ë', 'è', 'é', 'ï', 'ì', 'í', 'ö', 'õ', 'ò', 'ó', 'ô', 'ü', 'ù', 'ú', 'û', 'À', 'Á', 'É', 'Í', 'Ó', 'Ú', 'ñ', 'Ñ', 'ç', 'Ç', '-', '(', ')', ',', ';', ':', '|', '!', '"', '#', '$', '%', '&', '/', '=', '?', '~', '^', '>', '<', 'ª', 'º');
+
+            // matriz de saída
+            $by   = array('a', 'a', 'a', 'a', 'a', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'A', 'A', 'E', 'I', 'O', 'U', 'n', 'n', 'c', 'C', '', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_');
+
+            // devolver a string
+            return str_replace($what, $by, $string);
+        }
+
+        // INSTANCIA PRINCIPAL DO PAYLOAD DO PIX
+        $obPayload = (new Payload)->setPixKey($institute->pixKey)
+            ->setDescription('Doando para ' . sanitizeString($institute->nome_instituicao))
+            ->setMerchantName(sanitizeString($institute->titular))
+            ->setMerchantCity(sanitizeString($institute->municipio))
+            ->setAmount($vlr->valorDoado)
+            ->setTxid($hash);
+
+        //CODIGO DE PAGAMENTO PIX
+        $payloadQrCode = $obPayload->getPayload();
+
+        //Transforma o codigo do payloado em uma imagem qrcode
+        $renderer = new ImageRenderer(
+            new RendererStyle(400),
+            new SvgImageBackEnd()
+        );
+        $writer = new Writer($renderer);
 
 
-        return view('principais.codeDoar',['institute' => $institute, 'valorDoado' => $valorDoado]);
+
+        return view('principais.codeDoar', ['institute' => $institute, 'valorDoado' => $valorDoado, 'payloadQrCode' => $payloadQrCode, 'writer' => $writer]);
     }
 
     public function estatistica($id)
@@ -442,7 +488,7 @@ class InstitutesController extends Controller
         // Encontra instituição pelo id
         $campanha = Campanha::findOrFail($id);
 
-        // Pega o payment
+        // Pega o valor doado estipulado pelo doador
 
         $valorDoado = DB::table('payment_campanhas')
             ->select('valorDoado')
@@ -451,9 +497,47 @@ class InstitutesController extends Controller
             ->whereRaw('id = (select max(id) from payment_campanhas)')
             ->get();
 
+        foreach ($valorDoado as $vlr)
+
+            // GERA O VALOR DO TXID
+            $aleatorio = rand(25, 25);
+        $hash = substr(str_shuffle("AaBbCcDdEeFfGgHhIiJjKkLlMmNnPpQqRrSsTtUuVvYyXxWwZz0123456789"), 0, $aleatorio);
+
+        //SUBSTITUI ACENTOS E CARACTERES ESPECIAIS
+        function sanitizeString($string)
+        {
+
+            // matriz de entrada
+            $what = array('ä', 'ã', 'à', 'á', 'â', 'ê', 'ë', 'è', 'é', 'ï', 'ì', 'í', 'ö', 'õ', 'ò', 'ó', 'ô', 'ü', 'ù', 'ú', 'û', 'À', 'Á', 'É', 'Í', 'Ó', 'Ú', 'ñ', 'Ñ', 'ç', 'Ç', '-', '(', ')', ',', ';', ':', '|', '!', '"', '#', '$', '%', '&', '/', '=', '?', '~', '^', '>', '<', 'ª', 'º');
+
+            // matriz de saída
+            $by   = array('a', 'a', 'a', 'a', 'a', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'A', 'A', 'E', 'I', 'O', 'U', 'n', 'n', 'c', 'C', '', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_');
+
+            // devolver a string
+            return str_replace($what, $by, $string);
+        }
 
 
-        return view('principais.codeDoarCampanha',['campanha' => $campanha, 'valorDoado' => $valorDoado]);
+        // INSTANCIA PRINCIPAL DO PAYLOAD DO PIX
+        $obPayload = (new Payload)->setPixKey($campanha->pixKey)
+            ->setDescription('Doando para ' . sanitizeString($campanha->nome))
+            ->setMerchantName(sanitizeString($campanha->titular))
+            ->setMerchantCity(sanitizeString($campanha->cidade))
+            ->setAmount($vlr->valorDoado)
+            ->setTxid($hash);
+
+        //CODIGO DE PAGAMENTO PIX
+        $payloadQrCode = $obPayload->getPayload();
+
+        $renderer = new ImageRenderer(
+            new RendererStyle(400),
+            new SvgImageBackEnd()
+        );
+        $writer = new Writer($renderer);
+
+
+
+        return view('principais.codeDoarCampanha', ['campanha' => $campanha, 'valorDoado' => $valorDoado, 'payloadQrCode' => $payloadQrCode, 'writer' => $writer]);
     }
 
     public function mostrar($id)
@@ -858,8 +942,8 @@ class InstitutesController extends Controller
         $usuario = auth()->user();
 
         $paymentSum = DB::table('payment_campanhas')
-        ->where('id_campanha', '=', $id)
-        ->sum("valorDoado");
+            ->where('id_campanha', '=', $id)
+            ->sum("valorDoado");
 
         DB::table('campanhas')->where('id', '=', $id)->increment('visualizacoes');
         $campanha = Campanha::findOrFail($id);
