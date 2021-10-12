@@ -33,22 +33,7 @@
                         <label for="tel" class="mt-3">Digite o valor a ser doado:</label>
                         <input type="tel" name="valorDoado" id="valorDoado" class="form-control" placeholder="Separe o real dos centavos utilizando '.'">
                     </div>
-
-                    <div id="campoDoCalculo">
-
-                    </div>
-
-                    <br />
-                    <script>
-
-                    </script>
-
-                    <?php
-                    if (isset($_GET['valorDoado'])) {
-                        $valorDoado = $_GET['valorDoado'];
-                    }
-
-                    ?>
+                    <br>
 
                     <button type="submit" class="btn bg-verde-agua w-100 text-white mt-3 rounded-pill"><b>Gerar Código Pix</b></button>
 
