@@ -1,4 +1,4 @@
-<footer class="bg-light mt-5">
+<footer class="bg-light pt-5">
     <div class="container d-flex justify-content-center">
         <br>
         <hr>
