@@ -78,7 +78,7 @@
                                                 <a href="/perfil/{{ $post->id }}">
                                                     <b>{{ $post->name }}</b>
                                                 </a>
-                                                <p>{{ $post->data }}</p>
+                                                <textarea>{{ $post->data }}</textarea>
 
                                                 @if ($post->image != '')
                                                     <img src="{{ $post->image }}" alt="Imagem"

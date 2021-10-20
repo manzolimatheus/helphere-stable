@@ -70,7 +70,7 @@
                     </a>
                 </div>
                 <div class="col-sm">
-                    <button class="btn bg-roxo-vivo p-4 w-100 h3 rounded-pill" data-bs-toggle="modal"
+                    <button class="btn bg-roxo-vivo p-4 w-100 h3 text-white rounded-pill" data-bs-toggle="modal"
                         data-bs-target="#ModalDoarHelpHere">
                         <ion-icon name="cafe-outline" class="me-2"></ion-icon>
                         <b>Apoiar HelpHere</b>
@@ -246,7 +246,7 @@
         @endif
 
         @if (count($campanhas) > 0)
-            <div class="container bg-white shadow p-5 mt-5 mb-3 rounded">
+            <div class="container bg-white shadow p-5 mt-5 mb-5 rounded">
                 <h3>
                     <ion-icon name="search-outline" class="me-2" style="color: #cc00ff"></ion-icon> Descobrir
                     campanhas

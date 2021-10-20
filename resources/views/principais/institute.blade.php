@@ -125,7 +125,7 @@
 {{-- Fim Modal --}}
 
 
-<div class="container">
+<div class="container mb-5">
 
     {{-- Topo perfil do usuário --}}
     <div class="container bg-white rounded shadow w-100 text-center">
@@ -291,7 +291,7 @@
                 <img src="" id="preview" class="img-fluid rounded border shadow" width="100px">
             </div>
             @endif
-            <div class="container bg-white rounded shadow p-3 mt-3 mb-3">
+            <div class="container bg-white rounded shadow p-3 mt-3">
                 {{-- Posts --}}
                 <h5>Postagens de {{ $institute->nome_instituicao }}</h5>
             </div>
@@ -316,7 +316,7 @@
                     <div class="col-post-data g-0">
                         <div class="container">
                             <b>{{ $institute->nome_instituicao }}</b>
-                            <p>{{ $post->data }}</p>
+                            <textarea>{{ $post->data }}</textarea>
                             @if ($post->image != '')
                             <img src="{{ $post->image }}" alt="Imagem" class="img-fluid shadow rounded mb-3">
                             @endif

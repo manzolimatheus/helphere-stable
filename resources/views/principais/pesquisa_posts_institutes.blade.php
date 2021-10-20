@@ -56,7 +56,7 @@
                         </div>
                     @else
                         @foreach ($posts_institutes as $post)
-                            <div class="container bg-white shadow p-3 mt-3 mb-3 rounded">
+                            <div class="container bg-white p-3 mt-3 rounded">
                                 <div class="mt-1">
                                     <div class="row mt-1">
                                         <div class="col-post-foto">
@@ -69,7 +69,7 @@
                                                 <a href="/instituicao/{{ $post->id }}">
                                                     <b>{{ $post->nome_instituicao }}</b>
                                                 </a>
-                                                <p>{{ $post->data }}</p>
+                                                <textarea>{{ $post->data }}</textarea>
 
                                                 @if ($post->image != '')
                                                     <img src="{{ $post->image }}" alt="Imagem"
@@ -96,6 +96,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <hr>
                         @endforeach
                         @if (count($posts_institutes) > 29)
                             <div class="container bg-white rounded shadow p-3 mt-3 mb-3">

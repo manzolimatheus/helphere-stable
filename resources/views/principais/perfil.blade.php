@@ -4,7 +4,7 @@
 
 @section('conteudo')
 
-    <div class="container">
+    <div class="container mb-5">
 
         <div class="container bg-white rounded shadow w-100 text-center">
             {{-- Topo perfil do usuário --}}
@@ -134,7 +134,7 @@
                         <img src="" id="preview" class="img-fluid rounded border shadow" width="100px">
                     </div>
                 @endif
-                <div class="container bg-white rounded shadow p-3 mt-3 mb-3">
+                <div class="container bg-white rounded shadow p-3 mt-3">
                     {{-- Posts --}}
                     <h5>Postagens de {{ $perfil->name }}</h5>
                 </div>
@@ -168,7 +168,8 @@
                                     <div class="col-post-data">
                                         <b>{{ $perfil->name }}</b>
                                         <div class="container">
-                                            <p>{{ $post->data }}</p>
+                                            <textarea>{{ $post->data }}</textarea>
+                                            
 
                                             @if ($post->image != '')
                                                 <img src="{{ $post->image }}" alt="Imagem"

@@ -8,7 +8,7 @@
     <div class="container">
 
 
-        <div class="row mt-3 mb-3">
+        <div class="row mt-3 mb-5">
             <div class="col-sm-4">
 
                 <div class="container p-3 bg-white shadow rounded">

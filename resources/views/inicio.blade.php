@@ -59,7 +59,7 @@
                 <div class="container p-3">
                     <h1 class="text-info text-center h1">Sobre nós</h1>
                     <div class="container mt-5">
-                        <p class="display-6">HelpHere é um projeto voltado para apoiar instituições carentes
+                        <p class="texto-principal">HelpHere é um projeto voltado para apoiar instituições carentes
                             e conectar
                             pessoas a comunidades!
                             Criado em 2021 em um trabalho de conclusão de curso, agora estamos totalmente voltados para
@@ -74,7 +74,7 @@
                 <div class="container p-3 text-white">
                     <h1 class="text-info text-center">Como funciona?</h1>
                     <div class="container mt-5">
-                        <p class="display-6">Para utilizar nossos serviços basta criar uma conta e sair
+                        <p class="texto-principal">Para utilizar nossos serviços basta criar uma conta e sair
                             usando! Fácil e
                             rápido. Após isso você
                             decide, ajudar ou ser ajudado. 😇</p>

@@ -101,7 +101,7 @@
 
                         <div class="container p-3">
 
-                            <h1 id="nome_preview">Nome da campanha</h1>
+                            <h1 id="nome_preview">{{$campanha->nome}}</h1>
                             <p class="text-muted">Campanha</p>
 
                             <div class="container text-center">

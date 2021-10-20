@@ -141,9 +141,14 @@
   opacity: 0.9;
 }
 
-.texto {
+.texto-principal {
   font-size: 18pt;
-  font-weight: lighter;
+  padding: 5%;
+}
+
+.texto {
+  font-size: 14pt;
+  padding: 5%;
 }
 
 /* Arrumando cards com imagem e capa */
@@ -180,6 +185,13 @@
   width: 83.3333333333%;
 }
 
+.col-post-data textarea {
+  border: 0;
+  width: 100%;
+  min-height: 100px;
+  outline: none;
+}
+
 @media (max-width: 768px) {
   .col-post-foto {
     width: 33.3333333333%;
@@ -212,7 +224,6 @@
   }
 }
 
-
 .bg_video {
   width: 100vw;
   height: 100vh;
@@ -223,5 +234,5 @@
   top: 0;
   bottom: 0;
   z-index: -1;
-  filter:brightness(0.5);
+  filter: brightness(0.5);
 }

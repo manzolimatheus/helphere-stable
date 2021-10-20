@@ -19,7 +19,7 @@
     </div>
     {{-- Listando instituições --}}
 
-    <div class="container mb-3">
+    <div class="container mb-5">
         <div class="row">
             <div class="col-sm-9">
 
