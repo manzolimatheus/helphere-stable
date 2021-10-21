@@ -151,58 +151,46 @@
                 @else
                     @foreach ($posts as $post)
                         <div class="container bg-white rounded shadow p-3 mt-3 mb-3">
-                            <div class="mt-1">
-                                <div class="row g-0 mt-1">
-                                    <div class="col-post-foto">
-                                        <div class="text-center">
-                                            @if ($perfil->profile_photo_path == '')
-                                                <img src="https://ui-avatars.com/api/?name={{ urlencode($perfil->name) }}&color=7F9CF5&background=EBF4FF"
-                                                    alt="Imagem de perfil">
-                                            @else
-                                                <img src="/storage/{{ $perfil->profile_photo_path }}"
-                                                    alt="Imagem de perfil">
-                                            @endif
-                                        </div>
+                            <div class="post-foto">
+                                @if ($perfil->profile_photo_path == '')
+                                    <img src="https://ui-avatars.com/api/?name={{ urlencode($perfil->name) }}&color=7F9CF5&background=EBF4FF"
+                                        alt="Imagem de perfil">
+                                @else
+                                    <img src="/storage/{{ $perfil->profile_photo_path }}" alt="Imagem de perfil">
+                                @endif
+                                <b>{{ $perfil->name }}</b>
+                            </div>
+                            <div class="w-100">
 
+                                <p>{!! nl2br(e($post->data)) !!}</p>
+                                @if ($post->image != '')
+                                    <img src="{{ $post->image }}" alt="Imagem" class="w-100 rounded">
+                                @endif
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <p class="text-muted me-3">Postado em
+                                            {{ date('d/m/Y', strtotime($post->created_at)) }}</p>
                                     </div>
-                                    <div class="col-post-data">
-                                        <b>{{ $perfil->name }}</b>
-                                        <div class="container">
-                                            <textarea>{{ $post->data }}</textarea>
-                                            
-
-                                            @if ($post->image != '')
-                                                <img src="{{ $post->image }}" alt="Imagem"
-                                                    class="img-fluid shadow rounded mb-3">
-                                            @endif
-                                            <div class="row">
-                                                <div class="col-sm">
-                                                    <p class="text-muted me-3">Postado em
-                                                        {{ date('d/m/Y', strtotime($post->created_at)) }}</p>
-                                                </div>
-                                                <div class="col-sm mb-1">
-                                                    @if (Auth::id() == $perfil->id)
-                                                        <form action="/post_user_delete/{{ $post->id }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="border-0 bg-white"
-                                                                onclick="return confirm('Deseja realmente deletar esse post? Essa é uma ação sem volta!');">
-                                                                <span class="text-primary">Deletar post</span>
-                                                            </button>
-                                                        </form>
-                                                    @endif
-                                                </div>
-                                                <div class="col-sm">
-                                                    <form action="/report_post_user/{{ $post->id }}" method="POST">
-                                                        @csrf
-                                                        <button type="submit" class="border-0 bg-white"
-                                                            onclick="return alert('Post reportado! Nossa equipe verificará o ocorrido o mais rápido possível! 😉');">
-                                                            <span class="text-primary">Reportar post</span>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="col-sm mb-1">
+                                        @if (Auth::id() == $perfil->id)
+                                            <form action="/post_user_delete/{{ $post->id }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="border-0 bg-white"
+                                                    onclick="return confirm('Deseja realmente deletar esse post? Essa é uma ação sem volta!');">
+                                                    <span class="text-primary">Deletar post</span>
+                                                </button>
+                                            </form>
+                                        @endif
+                                    </div>
+                                    <div class="col-sm">
+                                        <form action="/report_post_user/{{ $post->id }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="border-0 bg-white"
+                                                onclick="return alert('Post reportado! Nossa equipe verificará o ocorrido o mais rápido possível! 😉');">
+                                                <span class="text-primary">Reportar post</span>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
