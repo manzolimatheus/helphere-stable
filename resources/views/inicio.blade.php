@@ -43,7 +43,13 @@
             </div>
             <div class="col-sm">
                 <h4>Instituições ajudadas</h4>
-                <h1 class="display-1">-</h1>
+                <h1 class="display-1">
+                @if ($institutesAjudados > 100000)
+                        100.000+
+                    @else
+                        {{ $institutesAjudados }}
+                    @endif
+                </h1>
             </div>
         </div>
     </div>
