@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \vendor\autoload;
-use \App\Pix\config_pix;
+//use \vendor\autoload;
+//use \App\Pix\config_pix;
 use \App\Pix\Payload;
 use App\Models\Institute;
 use App\Models\Payment;
@@ -17,7 +17,7 @@ use App\Models\entradaMensagem;
 use App\Models\Post;
 use App\Models\Posts_user;
 use App\Models\Campanha;
-use BaconQrCode\Renderer\Color\Rgb;
+//use BaconQrCode\Renderer\Color\Rgb;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
@@ -34,8 +34,9 @@ class InstitutesController extends Controller
 
         $usuarios_qtd = DB::table('users')->count();
         $institutes_qtd = DB::table('institutes')->count();
+        $instituteAjudados = DB::table('payments')->count(DB::raw('DISTINCT id_instituicao'));
         // Retorna view início como página principal
-        return view('inicio', ['usuarios' => $usuarios_qtd, 'institutes' => $institutes_qtd]);
+        return view('inicio', ['usuarios' => $usuarios_qtd, 'institutes' => $institutes_qtd, 'institutesAjudados' => $instituteAjudados]);
     }
 
     public function suporte()
