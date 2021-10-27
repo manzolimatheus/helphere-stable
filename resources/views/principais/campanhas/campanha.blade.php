@@ -87,7 +87,7 @@
     </div>
     {{-- Fim Modal --}}
 
-    <div class="container">
+    <div class="container mb-5">
 
         {{-- Topo perfil do usuário --}}
         <div class="container bg-white rounded shadow w-100 text-center">
@@ -226,7 +226,8 @@
             <div class="col-sm-7">
                 <div class="container bg-white rounded shadow w-100 mt-3 p-3">
                     <h3>Descrição da campanha</h3>
-                    <p>{{$campanha->descricao}}</p>
+                    <p>{!! nl2br(e($campanha->descricao)) !!}</p>
+                    
                 </div>
             </div>
         </div>

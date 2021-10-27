@@ -110,7 +110,7 @@ class InstitutesController extends Controller
             ['data', 'like', '%' . $pesquisa . '%']
         ])
             ->join('users', 'users.id', '=', 'posts_users.id_poster')
-            ->select('users.id', 'users.name', 'users.profile_photo_path', 'posts_users.data', 'posts_users.image', 'posts_users.created_at')
+            ->select('posts_users.id_poster', 'users.name', 'users.profile_photo_path', 'posts_users.data', 'posts_users.id', 'posts_users.image', 'posts_users.created_at')
             ->orderBy('created_at', 'desc')
             ->paginate(30);
 
@@ -131,7 +131,7 @@ class InstitutesController extends Controller
             ['data', 'like', '%' . $pesquisa . '%']
         ])
             ->join('institutes', 'institutes.id', '=', 'id_institute')
-            ->select('institutes.id', 'nome_instituicao', 'institutes.image_perfil', 'posts.data', 'posts.image', 'posts.created_at')
+            ->select('institutes.id', 'nome_instituicao', 'institutes.id_criador', 'institutes.image_perfil', 'posts.id', 'posts.data', 'posts.image', 'posts.created_at')
             ->orderBy('posts.created_at', 'desc')
             ->paginate(30);
 

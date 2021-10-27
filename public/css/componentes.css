@@ -141,9 +141,14 @@
   opacity: 0.9;
 }
 
-.texto {
+.texto-principal {
   font-size: 18pt;
-  font-weight: lighter;
+  padding: 5%;
+}
+
+.texto {
+  font-size: 14pt;
+  padding: 5%;
 }
 
 /* Arrumando cards com imagem e capa */
@@ -163,15 +168,10 @@
 
 /* POSTS */
 
-.col-post-foto {
-  flex: 0 0 auto;
-  width: 16.6666666667%;
-}
-
-.col-post-foto img {
+.post-foto img {
   clip-path: circle();
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
   object-fit: cover;
 }
 
@@ -180,7 +180,7 @@
   width: 83.3333333333%;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .col-post-foto {
     width: 33.3333333333%;
   }
@@ -188,7 +188,7 @@
   .col-post-data {
     width: 66.6666666667%;
   }
-}
+} */
 
 .flash-message {
   background-color: #e5ffe5;
@@ -212,7 +212,6 @@
   }
 }
 
-
 .bg_video {
   width: 100vw;
   height: 100vh;
@@ -223,5 +222,5 @@
   top: 0;
   bottom: 0;
   z-index: -1;
-  filter:brightness(0.5);
+  filter: brightness(0.5);
 }

@@ -4,7 +4,7 @@
 
 @section('conteudo')
 
-    <div class="container d-flex justify-content-center">
+    <div class="container d-flex justify-content-center mb-5">
         <div class="row w-100">
             <aside class="col-sm-3">
                 <div class="container p-3 mt-3 rounded bg-white shadow">

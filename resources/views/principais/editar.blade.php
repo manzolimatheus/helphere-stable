@@ -12,7 +12,7 @@
 
         {{-- Título --}}
 
-        <div class="row mt-3 mb-3">
+        <div class="row mt-3 mb-5">
             <div class="col-sm-4">
                 <div class="container p-3 bg-white shadow rounded">
 
@@ -65,10 +65,10 @@
                         </div>
 
                         <label for="pixKey" class="mt-3">Chave Pix para doações:</label>
-                        <input type="text" name="pixKey" id="pixKey" class="form-control" required>
+                        <input type="text" name="pixKey" id="pixKey" class="form-control" value="{{$institute->pixKey}}" required>
 
                         <label for="titular" class="mt-3">Titular da chave Pix:</label>
-                        <input type="text" name="titular" id="titular" class="form-control" required>
+                        <input type="text" name="titular" id="titular" class="form-control" value="{{$institute->titular}}" required>
 
                         <label for="tel" class="mt-3">Endereço do local:</label>
                         <input type="text" name="logradouro" id="logradouro" value="{{ $institute->logradouro }}" class="form-control">
@@ -104,7 +104,7 @@
                     <div class="container p-3">
                         <img src="{{ $institute->image_perfil }}" alt="Imagem de perfil" class="img-perfil rounded-circle" id="preview_img_perfil">
 
-                        <h1 id="nome_preview">Nome da instituição</h1>
+                        <h1 id="nome_preview">{{$institute->nome_instituicao}}</h1>
                         <p class="text-muted">Instituição</p>
 
                         <div class="container text-center">
