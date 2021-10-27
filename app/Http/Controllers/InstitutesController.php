@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use \vendor\autoload;
-//use \App\Pix\config_pix;
 use \App\Pix\Payload;
 use App\Models\Institute;
 use App\Models\Payment;
@@ -17,7 +15,6 @@ use App\Models\entradaMensagem;
 use App\Models\Post;
 use App\Models\Posts_user;
 use App\Models\Campanha;
-//use BaconQrCode\Renderer\Color\Rgb;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
