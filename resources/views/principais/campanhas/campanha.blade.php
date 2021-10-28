@@ -20,18 +20,18 @@
                     @csrf
 
                     <div hidden>
-                        <label for="tel" class="mt-3">Id Da campanha</label>
-                        <input type="tel" name="id_campanha" id="id_campanha" value="{{ $campanha->id }}" class="form-control">
+                        <label for="id_campanha" class="mt-3">Id Da campanha</label>
+                        <input type="number" name="id_campanha" id="id_campanha" value="{{ $campanha->id }}" class="form-control">
                     </div>
 
                     <div hidden>
-                        <label for="tel" class="mt-3">Id do doador</label>
-                        <input type="tel" name="id_doador" id="id_doador" value="{{ $usuario->id }}" class="form-control">
+                        <label for="id_doador" class="mt-3">Id do doador</label>
+                        <input type="number" name="id_doador" id="id_doador" value="{{ $usuario->id }}" class="form-control">
                     </div>
 
                     <div>
-                        <label for="tel" class="mt-3">Digite o valor a ser doado:</label>
-                        <input type="tel" name="valorDoado" id="valorDoado" class="form-control" placeholder="Separe o real dos centavos utilizando '.'">
+                        <label for="valorDoado" class="mt-3">Digite o valor a ser doado:</label>
+                        <input type="number" name="valorDoado" id="valorDoado" class="form-control" placeholder="Separe o real dos centavos utilizando '.'">
                     </div>
                     <br>
 
