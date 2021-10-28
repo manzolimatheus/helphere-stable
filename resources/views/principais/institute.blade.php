@@ -32,8 +32,8 @@
                         </div>
 
                         <div>
-                            <label for="tel" class="mt-3">Digite o valor a ser doado:</label>
-                            <input type="tel" name="valorDoado" id="valorDoado" class="form-control"
+                            <label for="valorDoado" class="mt-3">Digite o valor a ser doado:</label>
+                        <input type="number" step="0.01" name="valorDoado" id="valorDoado" class="form-control"
                                 placeholder="Separe o real dos centavos utilizando '.'">
                         </div>
                         <br>
