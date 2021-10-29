@@ -14,13 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\InstitutesController;
+use App\Http\Controllers\CampaignsController;
+use App\Http\Controllers\PrincipalController;
+use App\Http\Controllers\PesquisaController;
+use App\Http\Controllers\PostsController;
+use App\Http\Controllers\EmailController;
+use App\Http\Controllers\OthersController;
 
-// Princpal
-Route::get('/', [InstitutesController::class, 'index']);
-Route::get('/suporte', [InstitutesController::class, 'suporte']);
-Route::get('/dashboard', [InstitutesController::class, 'dashboard'])->middleware('auth');
-Route::get('/gerenciar', [InstitutesController::class, 'gerenciar'])->middleware('auth');
-Route::get('/config', [InstitutesController::class, 'config'])->middleware('auth');
+
+// Principal
+Route::get('/', [PrincipalController::class, 'index']);
+Route::get('/suporte', [PrincipalController::class, 'suporte']);
+Route::get('/dashboard', [PrincipalController::class, 'dashboard'])->middleware('auth');
+Route::get('/gerenciar', [PrincipalController::class, 'gerenciar'])->middleware('auth');
+Route::get('/config', [PrincipalController::class, 'config'])->middleware('auth');
 
 // Instituição
 Route::get('/criar', [InstitutesController::class, 'criar'])->middleware('auth');
@@ -34,44 +41,43 @@ Route::get('/instituicao/{id}/codeDoar', [InstitutesController::class, 'codeDoar
 Route::get('/instituicao/{id}/estatistica', [InstitutesController::class, 'estatistica'])->middleware('auth');
 
 // Perfil
-Route::get('/perfil/{id}', [InstitutesController::class, 'perfil'])->middleware('auth');
+Route::get('/perfil/{id}', [OthersController::class, 'perfil'])->middleware('auth');
 
 // Categoria
-Route::get('/categoria/{id}', [InstitutesController::class, 'categoria'])->middleware('auth');
+Route::get('/categoria/{id}', [OthersController::class, 'categoria'])->middleware('auth');
 
 // Pesquisa
-Route::get('/pesquisa', [InstitutesController::class, 'pesquisar_institutes'])->middleware('auth');
-Route::get('/pesquisa/pessoas', [InstitutesController::class, 'pesquisar_pessoas'])->middleware('auth');
-Route::get('/pesquisa/postsusers', [InstitutesController::class, 'pesquisar_posts_users'])->middleware('auth');
-Route::get('/pesquisa/postsinstitutes', [InstitutesController::class, 'pesquisar_posts_institutes'])->middleware('auth');
-Route::get('/pesquisa/campanha', [InstitutesController::class, 'pesquisar_campanha'])->middleware('auth');
+Route::get('/pesquisa', [PesquisaController::class, 'pesquisar_institutes'])->middleware('auth');
+Route::get('/pesquisa/pessoas', [PesquisaController::class, 'pesquisar_pessoas'])->middleware('auth');
+Route::get('/pesquisa/postsusers', [PesquisaController::class, 'pesquisar_posts_users'])->middleware('auth');
+Route::get('/pesquisa/postsinstitutes', [PesquisaController::class, 'pesquisar_posts_institutes'])->middleware('auth');
+Route::get('/pesquisa/campanha', [PesquisaController::class, 'pesquisar_campanha'])->middleware('auth');
 
 // Posts
-Route::post('/post_user', [InstitutesController::class, 'post_user'])->middleware('auth');
-Route::post('/post_institute/{id}', [InstitutesController::class, 'post_institute'])->middleware('auth');
-Route::delete('/post_delete/{id}', [InstitutesController::class, 'post_delete'])->middleware('auth');
-Route::delete('/post_user_delete/{id}', [InstitutesController::class, 'post_user_delete'])->middleware('auth');
-Route::post('/report_post_user/{id}', [InstitutesController::class, 'report_post_user'])->middleware('auth');
-Route::post('/report_post_institute/{id}', [InstitutesController::class, 'report_post_institute'])->middleware('auth');
+Route::post('/post_user', [PostsController::class, 'post_user'])->middleware('auth');
+Route::post('/post_institute/{id}', [PostsController::class, 'post_institute'])->middleware('auth');
+Route::delete('/post_delete/{id}', [PostsController::class, 'post_delete'])->middleware('auth');
+Route::delete('/post_user_delete/{id}', [PostsController::class, 'post_user_delete'])->middleware('auth');
+Route::post('/report_post_user/{id}', [PostsController::class, 'report_post_user'])->middleware('auth');
+Route::post('/report_post_institute/{id}', [PostsController::class, 'report_post_institute'])->middleware('auth');
 
 // E-mail embutido
-Route::get('/caixa_entrada', [InstitutesController::class, 'caixa_entrada'])->middleware('auth');
-Route::post('/enviar_mensagem/{id}', [InstitutesController::class, 'enviar_mensagem'])->middleware('auth');
-Route::delete('/delete_message/{id}', [InstitutesController::class, 'deletar_mensagem'])->middleware('auth');
-Route::delete('/delete_all_message', [InstitutesController::class, 'deletar_todas_mensagens'])->middleware('auth');
+Route::get('/caixa_entrada', [EmailController::class, 'caixa_entrada'])->middleware('auth');
+Route::post('/enviar_mensagem/{id}', [EmailController::class, 'enviar_mensagem'])->middleware('auth');
+Route::delete('/delete_message/{id}', [EmailController::class, 'deletar_mensagem'])->middleware('auth');
+Route::delete('/delete_all_message', [EmailController::class, 'deletar_todas_mensagens'])->middleware('auth');
 
 // Campanhas
-Route::get('/criar_campanha', [InstitutesController::class, 'criar_campanha'])->middleware('auth');
-Route::get('/campanha/{id}', [InstitutesController::class, 'show_campanha'])->middleware('auth');
-Route::post('/post_campanha', [InstitutesController::class, 'post_campanha'])->middleware('auth');
-Route::delete('/campanha/{id}', [InstitutesController::class, 'delete_campanha'])->middleware('auth');
-Route::get('/campanha/edit/{id}', [InstitutesController::class, 'editar_campanha'])->middleware('auth');
-Route::put('/campanha/update/{id}', [InstitutesController::class, 'update_campanha'])->middleware('auth');
-Route::post('/doarCampanha', [InstitutesController::class, 'doarCampanha'])->middleware('auth');
-Route::get('/campanha/{id}/codeDoarCampanha', [InstitutesController::class, 'codeDoarCampanha'])->middleware('auth');
+Route::get('/criar_campanha', [CampaignsController::class, 'criar_campanha'])->middleware('auth');
+Route::get('/campanha/{id}', [CampaignsController::class, 'show_campanha'])->middleware('auth');
+Route::post('/post_campanha', [CampaignsController::class, 'post_campanha'])->middleware('auth');
+Route::delete('/campanha/{id}', [CampaignsController::class, 'delete_campanha'])->middleware('auth');
+Route::get('/campanha/edit/{id}', [CampaignsController::class, 'editar_campanha'])->middleware('auth');
+Route::put('/campanha/update/{id}', [CampaignsController::class, 'update_campanha'])->middleware('auth');
+Route::post('/doarCampanha', [CampaignsController::class, 'doarCampanha'])->middleware('auth');
+Route::get('/campanha/{id}/codeDoarCampanha', [CampaignsController::class, 'codeDoarCampanha'])->middleware('auth');
 /*
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 */
-

@@ -386,18 +386,14 @@
         function copy() {
             /* Get the text field */
             var copyText = document.getElementById("linkToCopy");
-
             /* Select the text field */
             copyText.select();
             copyText.setSelectionRange(0, 99999); /* For mobile devices */
-
             /* Copy the text inside the text field */
             document.execCommand("copy");
-
             /* Alert the copied text */
             alert("Texto copiado para a área de transferência!");
         }
-
         function validateImage() {
             var fileName = document.getElementById("image").value;
             var idxDot = fileName.lastIndexOf(".") + 1;
