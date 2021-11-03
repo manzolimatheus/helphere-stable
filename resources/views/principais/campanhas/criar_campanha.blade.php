@@ -29,9 +29,9 @@
                         </select>
 
                         <label for="tel" class="mt-3">Telefone de contato</label>
-                        <input type="tel" name="tel" id="tel" class="form-control" required>
+                        <input type="tel" name="tel" maxlength="15" id="tel" class="form-control" required>
 
-                        <label for="tel" class="mt-3">E-mail de contato</label>
+                        <label for="email" class="mt-3">E-mail de contato</label>
                         <input type="email" name="email" id="email" class="form-control" required>
 
                         <label for="voluntarios" class="mt-3">Precisa de voluntários?</label>
