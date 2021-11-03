@@ -34,7 +34,7 @@
                         </select>
 
                         <label for="telefone" class="mt-3">Telefone de contato</label>
-                        <input type="text" name="telefone" id="telefone" class="form-control" required>
+                        <input type="text" name="telefone" maxlenght="15" id="telefone" class="form-control" required>
 
                         <label for="email" class="mt-3">E-mail de contato</label>
                         <input type="email" name="email" id="email" class="form-control" required>
