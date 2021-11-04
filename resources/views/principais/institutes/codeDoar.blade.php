@@ -7,7 +7,7 @@
 <div class="container bg-white rounded shadow p-3 mt-3 w-100 text-center" style="height: fit-content">
 
     <div class="col">
-        <div class="container bg-white rounded shadow p-3 mt-3 w-100 text-center" style="height: fit-content">
+        <div class="container bg-white p-3 mt-3 w-100 text-center" style="height: fit-content">
             <br>
             <b>
                 <h1 class="text-center"><strong><i>QR CODE PIX PARA A DOAÇÃO</i></strong></h1>
