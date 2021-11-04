@@ -70,7 +70,7 @@
                                         <ion-icon name="link-outline" class="h3"></ion-icon>
                                     </span>
                                     <input type="text" class="form-control text-muted bg-white" readonly
-                                        value="127.0.0.1:8000/instituicao/{{ $campanha->id }}" aria-describedby="link"
+                                        value="sitehelphere.herokuapp.com/campanha/{{ $campanha->id }}" aria-describedby="link"
                                         id="linkToCopy">
                                 </div>
                                 <h6>Compartilhe também nas redes sociais!</h6>
