@@ -28,7 +28,7 @@
                         <input type="text" name="cnpj" id="cnpj" class="form-control" required data-mask="00.000.000/0000-00" value="{{ $institute->cnpj }}">
 
                         <label for="nome" class="mt-3">Nome da instituição</label>
-                        <input type="text" name="nome_instituicao" id="nome" value="{{ $institute->nome_instituicao }}" class="form-control" oninput="nome_att()">
+                        <input type="text" name="nome_instituicao" id="nome" maxlength="255" value="{{ $institute->nome_instituicao }}" class="form-control" oninput="nome_att()">
 
                         <label for="categoria" class="mt-3">Categoria</label>
                         <select name="id_categoria" id="categoria" class="form-select">
@@ -44,34 +44,34 @@
 
 
                         <label for="tel" class="mt-3">Telefone de contato:</label>
-                        <input type="tel" name="telefone" id="tel" value="{{ $institute->telefone }}" class="form-control">
+                        <input type="tel" name="telefone" id="tel" maxlength="15" value="{{ $institute->telefone }}" class="form-control">
 
 
                         <label for="tel" class="mt-3">E-mail de contato:</label>
-                        <input type="email" name="email" id="email" value="{{ $institute->email }}" class="form-control">
+                        <input type="email" name="email" id="email" maxlength="255" value="{{ $institute->email }}" class="form-control">
 
 
                         <div class="form-group row">
 
                             <div class="col-md-8">
                                 <label for="municipio" class="mt-3">Cidade</label>
-                                <input type="text" name="municipio" id="municipio" value="{{ $institute->municipio }}" class="form-control">
+                                <input type="text" name="municipio" id="municipio" maxlength="60" value="{{ $institute->municipio }}" class="form-control">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="uf" class="mt-3">Estado</label>
-                                <input type="text" name="uf" id="uf" value="{{ $institute->uf }}" class="form-control">
+                                <input type="text" name="uf" id="uf" maxlength="30" value="{{ $institute->uf }}" class="form-control">
                             </div>
                         </div>
 
                         <label for="pixKey" class="mt-3">Chave Pix para doações:</label>
-                        <input type="text" name="pixKey" id="pixKey" class="form-control" value="{{$institute->pixKey}}" required>
+                        <input type="text" name="pixKey" id="pixKey" maxlength="60" class="form-control" value="{{$institute->pixKey}}" required>
 
                         <label for="titular" class="mt-3">Titular da chave Pix:</label>
-                        <input type="text" name="titular" id="titular" class="form-control" value="{{$institute->titular}}" required>
+                        <input type="text" name="titular" id="titular" maxlength="255" class="form-control" value="{{$institute->titular}}" required>
 
                         <label for="tel" class="mt-3">Endereço do local:</label>
-                        <input type="text" name="logradouro" id="logradouro" value="{{ $institute->logradouro }}" class="form-control">
+                        <input type="text" name="logradouro" id="logradouro" maxlength="255" value="{{ $institute->logradouro }}" class="form-control">
 
                         <label for="image" class="mt-3">Imagem de capa:</label>
                         <input type="file" name="image" id="image" onchange="validateCapa()" class="form-control" accept="image/*">
