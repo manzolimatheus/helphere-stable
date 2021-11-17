@@ -13,7 +13,7 @@
                             class="text-primary">Experimente criar primeiro.</span></h3>
                     <div class="container p-3 mt-3 mb-3">
                         <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_Dtvdde.json"
-                            background="transparent" speed="1" loop autoplay style="width: 80%" class="mx-auto"></lottie-player>
+                            background="transparent" speed="1" loop autoplay style="width: 50%" class="mx-auto"></lottie-player>
                     </div>
                     <div class="row">
                         <div class="col">

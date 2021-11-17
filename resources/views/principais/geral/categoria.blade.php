@@ -31,7 +31,7 @@
                         <p>Poxa, que triste! Não há instituições nem campanhas com essa categoria ainda! :(</p>
                         <div class="container p-3">
                             <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_CGPHc4.json"
-                                background="transparent" speed="1" style="width: 80%;" class="mx-auto" loop
+                                background="transparent" speed="1" style="width: 50%;" class="mx-auto" loop
                                 autoplay></lottie-player>
                         </div>
                     </div>
