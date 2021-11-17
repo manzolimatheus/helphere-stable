@@ -24,7 +24,7 @@
                         @csrf
                         @method('PUT')
                         <label for="nome" class="mt-3">Nome da campanha</label>
-                        <input type="text" name="nome" id="nome" value="{{ $campanha->nome }}" class="form-control" oninput="nome_att()">
+                        <input type="text" name="nome" id="nome" maxlength="255" value="{{ $campanha->nome }}" class="form-control" oninput="nome_att()">
 
                         <label for="categoria" class="mt-3">Categoria</label>
                         <select name="id_categoria" id="categoria" class="form-select">
@@ -40,11 +40,11 @@
 
 
                         <label for="tel" class="mt-3">Telefone de contato</label>
-                        <input type="tel" name="telefone" id="tel" value="{{ $campanha->telefone }}" class="form-control">
+                        <input type="tel" name="telefone" id="tel" maxlength="15" value="{{ $campanha->telefone }}" class="form-control">
 
 
                         <label for="email" class="mt-3">E-mail de contato</label>
-                        <input type="email" name="email" id="email" value="{{ $campanha->email }}" class="form-control">
+                        <input type="email" name="email" id="email" maxlength="255" value="{{ $campanha->email }}" class="form-control">
 
 
 
@@ -66,13 +66,13 @@
                         <br>
 
                         <label for="cidade" class="mt-3">Cidade:</label>
-                        <input type="text" name="cidade" id="cidade" class="form-control" value="{{$campanha->cidade}}" required>
+                        <input type="text" name="cidade" id="cidade" maxlength="60" class="form-control" value="{{$campanha->cidade}}" required>
 
                         <label for="pixKey" class="mt-3">Chave Pix para doações:</label>
-                        <input type="text" name="pixKey" id="pixKey" class="form-control" value="{{$campanha->pixKey}}" required>
+                        <input type="text" name="pixKey" id="pixKey" maxlength="60" class="form-control" value="{{$campanha->pixKey}}" required>
 
                         <label for="titular" class="mt-3">Titular da chave Pix:</label>
-                        <input type="text" name="titular" id="titular" class="form-control" value="{{$campanha->titular}}" required>
+                        <input type="text" name="titular" id="titular" maxlength="255" class="form-control" value="{{$campanha->titular}}" required>
 
                         <label for="image" class="mt-3">Imagem de capa:</label>
                         <input type="file" name="image" id="image" onchange="validateCapa()" class="form-control" accept="image/*">

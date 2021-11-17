@@ -23,7 +23,7 @@
                             onchange="checkCnpj(this.value)" data-mask="00.000.000/0000-00">
 
                         <label for="nome" class="mt-3">Nome da instituição</label>
-                        <input type="text" name="nome" id="nome" class="form-control" required oninput="nome_att()">
+                        <input type="text" name="nome" id="nome" maxlength="255" class="form-control" required oninput="nome_att()">
 
 
                         <label for="categoria" class="mt-3">Categoria</label>
@@ -37,29 +37,29 @@
                         <input type="tel" name="telefone" maxlenght="15" id="telefone" class="form-control" required>
 
                         <label for="email" class="mt-3">E-mail de contato</label>
-                        <input type="email" name="email" id="email" class="form-control" required>
+                        <input type="email" name="email" id="email" maxlength="255" class="form-control" required>
 
                         <label for="logradouro" class="mt-3">Endereço do local</label>
-                        <input type="text" name="logradouro" id="logradouro" class="form-control" required>
+                        <input type="text" name="logradouro" id="logradouro" maxlength="255" class="form-control" required>
 
                         <div class="form-group row">
 
                             <div class="col-md-8">
                                 <label for="municipio" class="mt-3">Cidade</label>
-                                <input type="text" name="municipio" id="municipio" class="form-control" required>
+                                <input type="text" name="municipio" id="municipio" maxlength="60" class="form-control" required>
                             </div>
 
                             <div class="col-md-4">
                                 <label for="uf" class="mt-3">Estado</label>
-                                <input type="text" name="uf" id="uf" class="form-control" required>
+                                <input type="text" name="uf" id="uf" maxlength="30" class="form-control" required>
                             </div>
                         </div>
 
                         <label for="pixKey" class="mt-3">Chave Pix para doações:</label>
-                        <input type="text" name="pixKey" id="pixKey" class="form-control" required>
+                        <input type="text" name="pixKey" id="pixKey" maxlength="60" class="form-control" required>
 
                         <label for="titular" class="mt-3">Titular da chave Pix:</label>
-                        <input type="text" name="titular" id="titular" class="form-control" required>
+                        <input type="text" name="titular" id="titular" maxlength="255" class="form-control" required>
 
                         <label for="image" class="mt-3">Imagem de capa</label>
                         <input type="file" name="image" id="image" class="form-control" onchange="validateCapa()"
