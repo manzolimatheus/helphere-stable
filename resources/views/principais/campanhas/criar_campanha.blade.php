@@ -32,7 +32,7 @@
                         <input type="tel" name="tel" maxlength="15" id="tel" class="form-control" required>
 
                         <label for="email" class="mt-3">E-mail de contato</label>
-                        <input type="email" name="email" id="email" class="form-control" required>
+                        <input type="email" name="email" id="email" maxlength="255" class="form-control" required>
 
                         <label for="voluntarios" class="mt-3">Precisa de voluntários?</label>
                         <input type="checkbox" name="voluntarios" id="voluntarios" onclick="AtivaEndereco()">
@@ -40,7 +40,7 @@
 
                         <div id="div_endereco" style="display: none">
                             <label for="tel" class="mt-3">Endereço do local</label>
-                            <input type="text" name="endereco" id="endereco" class="form-control">
+                            <input type="text" name="endereco" id="endereco" maxlength="255" class="form-control">
                         </div>
 
                         <label for="data_fim" class="mt-3">Data de fim da campanha</label>
@@ -48,13 +48,13 @@
                         <br>
 
                         <label for="cidade" class="mt-3">Cidade:</label>
-                        <input type="text" name="cidade" id="cidade" class="form-control" required>
+                        <input type="text" name="cidade" id="cidade" maxlength="60" class="form-control" required>
 
                         <label for="pixKey" class="mt-3">Chave Pix para doações:</label>
-                        <input type="text" name="pixKey" id="pixKey" class="form-control" required>
+                        <input type="text" name="pixKey" id="pixKey" maxlength="60" class="form-control" required>
 
                         <label for="titular" class="mt-3">Titular da chave Pix:</label>
-                        <input type="text" name="titular" id="titular" class="form-control" required>
+                        <input type="text" name="titular" id="titular" maxlength="255" class="form-control" required>
 
                         <label for="image" class="mt-3">Imagem de capa</label>
                         <input type="file" name="image" id="image" class="form-control" onchange="validateCapa()"
