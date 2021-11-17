@@ -58,12 +58,12 @@
                     @endauth
 
                     <p>
-                        <a href="#" class="text-dark">
+                        <a href="/arquivos/Politica_Privacidade.pdf" download="Politica_Privacidade.pdf" class="text-dark">
                             <ion-icon name="document-text-outline" class="mx-2"></ion-icon>Política de privacidade
                         </a>
                     </p>
                     <p>
-                        <a href="#" class="text-dark">
+                        <a href="/arquivos/Termos_e_condicoes_de_uso_para_o_site_-Help_Here.pdf" download="Termos_e_condicoes_de_uso_para_o_site_-Help_Here.pdf" class="text-dark">
                             <ion-icon name="document-text-outline" class="mx-2"></ion-icon>Termos de uso
                         </a>
                     </p>
