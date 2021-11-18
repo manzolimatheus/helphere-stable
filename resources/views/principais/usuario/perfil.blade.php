@@ -40,7 +40,7 @@
         {{-- Linha de conteudo --}}
         <div class="row">
             {{-- Coluna sobre mim --}}
-            <div class="col-sm-4">
+            <div class="col-sm">
                 {{-- Dados do perfil --}}
                 <div class="container bg-white rounded shadow p-3 mt-3 w-100" style="height: fit-content">
                     <div class="container">
@@ -107,7 +107,7 @@
 
             </div>
             {{-- Coluna de postagens --}}
-            <div class="col-sm-8">
+            <div class="col-sm">
                 @if (Auth::id() == $perfil->id)
                     <div class="container bg-white shadow p-3 mt-3 rounded">
                         {{-- Formulário --}}
