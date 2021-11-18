@@ -79,51 +79,6 @@
                     </div>
                     <hr>
                 </div>
-                {{-- <div class="container bg-white p-3 mb-3 rounded">
-                    <div class="mt-1">
-                        <div class="row mt-1">
-                            <div class="post-foto">
-                                <div class="text-center p-2">
-                                    @if ($mensagem->profile_photo_path == '')
-                                        <img src="https://ui-avatars.com/api/?name={{ urlencode($mensagem->name) }}&color=7F9CF5&background=EBF4FF"
-                                            alt="Imagem de perfil" class="img-perfil rounded-circle">
-                                    @else
-                                        <img src="/storage/{{ $mensagem->profile_photo_path }}" alt="Imagem de perfil"
-                                            class="img-perfil rounded-circle">
-                                    @endif
-                                    <a href="/perfil/{{ $mensagem->id_enviou }}">
-                                        <b>{{ $mensagem->name }}</b>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="container">
-
-                                <br>
-                                <b>{{ $mensagem->title }}</b>
-                                <p>{{ $mensagem->data }}</p>
-
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <p class="text-muted me-3">Enviado em {{ $mensagem->created_at }}</p>
-                                    </div>
-                                    <div class="col-sm">
-                                        <form action="/delete_message/{{ $mensagem->id }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger"
-                                                onclick="return confirm('Deseja realmente deletar essa mensagem? Essa é uma ação sem volta!');">
-                                                <span class="text-white">
-                                                    <ion-icon name="trash-outline"></ion-icon>
-                                                </span>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                </div> --}}
             @endforeach
         @endif
     </div>
