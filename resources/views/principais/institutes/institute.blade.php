@@ -74,7 +74,7 @@
                                         <ion-icon name="link-outline" class="h3"></ion-icon>
                                     </span>
                                     <input type="text" class="form-control text-muted bg-white" readonly
-                                        value="sitehelphere.herokuapp.com/instituicao/{{ $institute->id }}" aria-describedby="link"
+                                        value="{{Request::url()}}" aria-describedby="link"
                                         id="linkToCopy">
                                 </div>
                                 <h6>Compartilhe também nas redes sociais!</h6>
@@ -163,12 +163,14 @@
                 <hr>
                 <div class="row">
                     {{-- Coluna 1 --}}
+                    @if (Auth::id() !== $institute->id_criador)
                     <div class="col-sm p-1">
                         <button class="btn bg-verde-agua w-100 p-3 text-white rounded-pill" data-bs-toggle="modal"
                             data-bs-target="#ModalDoar">
                             <b>Apoiar causa</b>
                         </button>
                     </div>
+                    @endif
                     {{-- Coluna 2 --}}
                     <div class="col-sm p-1">
                         <button class="btn btn-info w-100 p-3 text-white rounded-pill" data-bs-toggle="modal"
@@ -176,12 +178,25 @@
                             <b>Compartilhar</b>
                         </button>
                     </div>
+                    {{-- Coluna 3 --}}
+                    @if (Auth::id() !== $institute->id_criador)
                     <div class="col-sm p-1">
                         <button class="btn bg-roxo w-100 p-3 text-white rounded-pill" data-bs-toggle="modal"
                             data-bs-target="#ModalMensagem">
                             <b>Deixar recado</b>
                         </button>
                     </div>
+                    @endif
+                     {{-- COluna 4  --}}
+                    @if (Auth::id() === $institute->id_criador)
+                    <div class="col-sm p1">
+                        <a href="/instituicao/{{ $institute['id'] }}/estatistica">
+                            <button class="btn bg-verde-agua w-100 p-3 text-white rounded-pill">
+                                <b>Estimativa das doações</b>
+                            </button>
+                        </a>
+                    </div>
+                    @endif               
                 </div>
             </div>
         </div>
@@ -218,17 +233,11 @@
                         {{ $institute->logradouro }}, {{ $institute->municipio }} - {{ $institute->uf }}
                     </p>
 
-                    <div class="col-sm p-1">
-                        <a href="/instituicao/{{ $institute['id'] }}/estatistica">
-                            <button class="btn bg-verde-agua w-100 p-1 text-white rounded-pill">
-                                <b>Estimativa das doações</b>
-                            </button>
-                        </a>
-                    </div>
+                        
 
                 </div>
 
-                @if (Auth::id() == $institute->id_criador)
+                @if (Auth::id() === $institute->id_criador)
                     <div class="col-sm-5 container bg-white rounded shadow p-3 mt-3 w-100 text-center"
                         style="height: fit-content">
                         <p>
@@ -243,8 +252,6 @@
                                 </strong></h3>
                             </a>
                         </div>
-
-
                         </p>
                     </div>
                 @endif
@@ -286,7 +293,7 @@
 
             </div>
             <div class="col-sm-7">
-                @if (Auth::id() == $institute->id_criador)
+                @if (Auth::id() === $institute->id_criador)
                     <div class="container bg-white shadow p-3 mt-3 rounded">
 
                         {{-- Formulário --}}
@@ -347,7 +354,7 @@
                                             {{ date('d/m/Y', strtotime($post->created_at)) }}</p>
                                     </div>
                                     <div class="col-sm mb-1">
-                                        @if (Auth::id() == $institute->id_criador)
+                                        @if (Auth::id() === $institute->id_criador)
                                             <form action="/post_delete/{{ $post->id }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
