@@ -42,7 +42,7 @@
                 </h1>
             </div>
             <div class="col-sm">
-                <h4>Instituições ajudadas</h4>
+                <h4>Doações realizadas</h4>
                 <h1 class="display-1">
                 @if ($institutesAjudados > 100000)
                         100.000+

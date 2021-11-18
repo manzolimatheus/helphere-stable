@@ -42,22 +42,12 @@
                 <x-jet-input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-jet-label for="terms">
-                        <div class="flex items-center">
-                            <x-jet-checkbox name="terms" id="terms"/>
-
-                            <div class="ml-2">
-                                {!! __('EU concordo com :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
-                                ]) !!}
-                            </div>
-                        </div>
-                    </x-jet-label>
-                </div>
-            @endif
+            <div class="mt-3">
+                <p>
+                    Ao criar uma conta, você concorda com a <a href="/arquivos/Politica_Privacidade.pdf" download="Politica_Privacidade.pdf">política de privacidade</a>
+                    e <a href="/arquivos/Termos_e_condicoes_de_uso_para_o_site_-Help_Here.pdf" download="Termos_e_condicoes_de_uso_para_o_site_-Help_Here.pdf">termos de uso.</a>
+                </p>
+            </div>
 
             <div class="container mt-3">
                 <a href="{{ route('login') }}">
