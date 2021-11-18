@@ -106,7 +106,7 @@
                         var mai = parseInt(maio);
 
                         var junho = "<?php echo $junho; ?>";
-                        var jun = parseInt(jun);
+                        var jun = parseInt(junho);
 
                         var julho = "<?php echo $julho; ?>";
                         var jul = parseInt(julho);
