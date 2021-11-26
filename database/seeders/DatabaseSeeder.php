@@ -38,12 +38,12 @@ class DatabaseSeeder extends Seeder
         ];
 
         DB::table('category_institutes')->insert($categorias);
-
-        /*
-        \App\Models\User::factory(100)->create();
-        \App\Models\Institute::factory(100)->create();
+        
+        \App\Models\User::factory(500)->create();
+        \App\Models\Institute::factory(500)->create();
+        \App\Models\Campanha::factory(500)->create();
         \App\Models\Post::factory(500)->create();
-        \App\Models\Posts_user::factory(100)->create();
-        */
+        \App\Models\Posts_user::factory(500)->create();
+        
     }
 }

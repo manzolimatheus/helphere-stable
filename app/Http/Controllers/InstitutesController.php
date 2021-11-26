@@ -29,63 +29,68 @@ class InstitutesController extends Controller
 
     public function criarInstitutes(Request $request)
     {
-        // Cria novo instituto
-        $institute = new Institute;
 
-        // Coleta usuário autenticado para definir o dono
-        $usuario = auth()->user();
+        try {
+            // Cria novo instituto
+            $institute = new Institute;
 
-        // Request dos dados do formulários
-        $institute->cnpj = $request->cnpj;
-        $institute->nome_instituicao = $request->nome;
-        $institute->id_criador = $usuario->id;
-        $institute->id_categoria = $request->categoria;
-        $institute->telefone = $request->telefone;
-        $institute->email = $request->email;
-        $institute->municipio = $request->municipio;
-        $institute->uf = $request->uf;
-        $institute->logradouro = $request->logradouro;
-        $institute->pixKey = $request->pixKey;
-        $institute->titular = $request->titular;
-        $institute->descricao = $request->descricao;
+            // Coleta usuário autenticado para definir o dono
+            $usuario = auth()->user();
 
-        // Upload de imagem, se não houver, ele usa uma imagem placeholder
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Request dos dados do formulários
+            $institute->cnpj = $request->cnpj;
+            $institute->nome_instituicao = $request->nome;
+            $institute->id_criador = $usuario->id;
+            $institute->id_categoria = $request->categoria;
+            $institute->telefone = $request->telefone;
+            $institute->email = $request->email;
+            $institute->municipio = $request->municipio;
+            $institute->uf = $request->uf;
+            $institute->logradouro = $request->logradouro;
+            $institute->pixKey = $request->pixKey;
+            $institute->titular = $request->titular;
+            $institute->descricao = $request->descricao;
 
-            $requestImage = $request->image;
+            // Upload de imagem, se não houver, ele usa uma imagem placeholder
+            if ($request->hasFile('image') && $request->file('image')->isValid()) {
 
-            $extension = $requestImage->extension();
+                $requestImage = $request->image;
 
-            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+                $extension = $requestImage->extension();
 
-            $requestImage->move(public_path('/img/institutes/' . $usuario->id . '_' . $request->nome . '/capa'), $imageName);
+                $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
 
-            $institute->image = '/img/institutes/' . $usuario->id . '_' . $request->nome . "/capa/" . $imageName;
-        } else {
-            $institute->image = "https://ui-avatars.com/api/?name=" . urlencode($institute->nome_instituicao) . "&color=7F9CF5&background=EBF4FF";
+                $requestImage->move(public_path('/img/institutes/' . $usuario->id . '_' . $request->nome . '/capa'), $imageName);
+
+                $institute->image = '/img/institutes/' . $usuario->id . '_' . $request->nome . "/capa/" . $imageName;
+            } else {
+                $institute->image = "https://ui-avatars.com/api/?name=" . urlencode($institute->nome_instituicao) . "&color=7F9CF5&background=EBF4FF";
+            }
+
+            // Upload de imagem, se não houver, ele usa uma imagem placeholder
+            if ($request->hasFile('image_perfil') && $request->file('image_perfil')->isValid()) {
+
+                $requestImage = $request->image_perfil;
+
+                $extension = $requestImage->extension();
+
+                $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+                $requestImage->move(public_path('/img/institutes/' . $usuario->id . '_' . $request->nome . '/img_perfil'), $imageName);
+
+                $institute->image_perfil = '/img/institutes/' . $usuario->id . '_' . $request->nome . '/img_perfil/' . $imageName;
+            } else {
+                $institute->image_perfil = "https://ui-avatars.com/api/?name=" . urlencode($institute->nome_instituicao) . "&color=7F9CF5&background=EBF4FF";
+            }
+
+            // Salva no banco
+            $institute->save();
+
+            // Redireciona para a dashboard
+            return redirect('/dashboard')->with('msg', 'Instituição criada com sucesso!');
+        } catch (\Throwable $th) {
+            return redirect(url()->previous())->with('msg', 'O CNPJ que você inseriu já foi registrado em nosso sistema, verifique se você digitou corretamente, ou entre em contato conosco pelo e-mail: helphere.contact@gmail.com.');
         }
-
-        // Upload de imagem, se não houver, ele usa uma imagem placeholder
-        if ($request->hasFile('image_perfil') && $request->file('image_perfil')->isValid()) {
-
-            $requestImage = $request->image_perfil;
-
-            $extension = $requestImage->extension();
-
-            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
-
-            $requestImage->move(public_path('/img/institutes/' . $usuario->id . '_' . $request->nome . '/img_perfil'), $imageName);
-
-            $institute->image_perfil = '/img/institutes/' . $usuario->id . '_' . $request->nome . '/img_perfil/' . $imageName;
-        } else {
-            $institute->image_perfil = "https://ui-avatars.com/api/?name=" . urlencode($institute->nome_instituicao) . "&color=7F9CF5&background=EBF4FF";
-        }
-
-        // Salva no banco
-        $institute->save();
-
-        // Redireciona para a dashboard
-        return redirect('/dashboard')->with('msg', 'Instituição criada com sucesso!');
     }
 
     public function doar(Request $request)
@@ -334,47 +339,51 @@ class InstitutesController extends Controller
 
     public function update(Request $request)
     {
-        // Coleta todos os dados inseridos na página de instituição
-        $dados = $request->all();
+        try {
+            // Coleta todos os dados inseridos na página de instituição
+            $dados = $request->all();
 
-        $usuario = auth()->user();
+            $usuario = auth()->user();
 
-        $institute = Institute::findOrFail($request->id);
+            $institute = Institute::findOrFail($request->id);
 
-        // Upload de imagem
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Upload de imagem
+            if ($request->hasFile('image') && $request->file('image')->isValid()) {
 
-            File::delete(public_path($institute->image));
+                File::delete(public_path($institute->image));
 
-            $requestImage = $request->image;
+                $requestImage = $request->image;
 
-            $extension = $requestImage->extension();
+                $extension = $requestImage->extension();
 
-            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+                $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
 
-            $request->image->move(public_path('/img/institutes/' . $usuario->id . '_' . $request->nome . '/capa'), $imageName);
+                $request->image->move(public_path('/img/institutes/' . $usuario->id . '_' . $request->nome . '/capa'), $imageName);
 
-            $dados['image'] = '/img/institutes/' . $usuario->id . '_' . $request->nome . '/capa/' . $imageName;
+                $dados['image'] = '/img/institutes/' . $usuario->id . '_' . $request->nome . '/capa/' . $imageName;
+            }
+
+            // Upload de imagem
+            if ($request->hasFile('image_perfil') && $request->file('image_perfil')->isValid()) {
+
+                File::delete(public_path($institute->image_perfil));
+
+                $requestImage = $request->image_perfil;
+
+                $extension = $requestImage->extension();
+
+                $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+                $request->image_perfil->move(public_path('/img/institutes/' . $usuario->id . '_' . $request->nome . '/img_perfil'), $imageName);
+
+                $dados['image_perfil'] = '/img/institutes/' . $usuario->id . '_' . $request->nome . '/img_perfil/' . $imageName;
+            }
+
+            $institute->update($dados);
+
+            return redirect('/gerenciar')->with('msg', 'Instituição atualizada com sucesso!');
+        } catch (\Throwable $th) {
+            return redirect(url()->previous())->with('msg', 'O CNPJ que você inseriu já foi registrado em nosso sistema, verifique se você digitou corretamente, ou entre em contato conosco pelo e-mail: helphere.contact@gmail.com.');
         }
-
-        // Upload de imagem
-        if ($request->hasFile('image_perfil') && $request->file('image_perfil')->isValid()) {
-
-            File::delete(public_path($institute->image_perfil));
-
-            $requestImage = $request->image_perfil;
-
-            $extension = $requestImage->extension();
-
-            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
-
-            $request->image_perfil->move(public_path('/img/institutes/' . $usuario->id . '_' . $request->nome . '/img_perfil'), $imageName);
-
-            $dados['image_perfil'] = '/img/institutes/' . $usuario->id . '_' . $request->nome . '/img_perfil/' . $imageName;
-        }
-
-        $institute->update($dados);
-
-        return redirect('/gerenciar')->with('msg', 'Instituição atualizada com sucesso!');
     }
 }

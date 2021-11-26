@@ -44,7 +44,7 @@
                                     <div class="card mx-2 shadow" style="width: 18rem">
                                         <img src="{{ $institute->image_perfil }}" class="card-img-top">
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ $institute->nome_instituicao }}</h5>
+                                            <h5 class="card-title text-truncate">{{ $institute->nome_instituicao }}</h5>
                                             <p>Instituição</p>
                                             <a href="/instituicao/{{ $institute->id }}"
                                                 class="btn btn-outline-primary w-100 mb-1 rounded-pill"><b>Saiba
@@ -81,7 +81,7 @@
                                     <div class="card mx-2 shadow" style="width: 18rem">
                                         <img src="{{ $campanha->img_path }}" class="card-img-top">
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ $campanha->nome }}</h5>
+                                            <h5 class="card-title text-truncate">{{ $campanha->nome }}</h5>
                                             <p>Campanha</p>
                                             <a href="/campanha/{{ $campanha->id }}"
                                                 class="btn btn-outline-primary w-100 mb-1 rounded-pill"><b>Saiba

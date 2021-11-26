@@ -15,10 +15,11 @@
                     <h3>
                         Crie sua campanha
                     </h3>
-                    <form action="/post_campanha" method="POST" enctype="multipart/form-data">
+                    <form action="/post_campanha" method="POST" enctype="multipart/form-data" id="form">
                         @csrf
                         <label for="nome" class="mt-3">Nome da campanha</label>
-                        <input type="text" name="nome" id="nome" class="form-control" required oninput="nome_att()">
+                        <input type="text" name="nome" id="nome" class="form-control" maxlength="50" required
+                            oninput="nome_att()">
 
 
                         <label for="categoria" class="mt-3">Categoria</label>
@@ -29,10 +30,11 @@
                         </select>
 
                         <label for="tel" class="mt-3">Telefone de contato</label>
-                        <input type="tel" name="tel" maxlength="15" id="tel" class="form-control" required>
+                        <input type="text" name="tel" maxlength="14" id="tel" class="form-control"
+                            data-mask="(00)00000-0000" required>
 
                         <label for="email" class="mt-3">E-mail de contato</label>
-                        <input type="email" name="email" id="email" maxlength="255" class="form-control" required>
+                        <input type="email" name="email" id="email" maxlength="100" class="form-control" required>
 
                         <label for="voluntarios" class="mt-3">Precisa de voluntários?</label>
                         <input type="checkbox" name="voluntarios" id="voluntarios" onclick="AtivaEndereco()">
@@ -40,7 +42,7 @@
 
                         <div id="div_endereco" style="display: none">
                             <label for="tel" class="mt-3">Endereço do local</label>
-                            <input type="text" name="endereco" id="endereco" maxlength="255" class="form-control">
+                            <input type="text" name="endereco" id="endereco" maxlength="100" class="form-control">
                         </div>
 
                         <label for="data_fim" class="mt-3">Data de fim da campanha</label>
@@ -48,13 +50,13 @@
                         <br>
 
                         <label for="cidade" class="mt-3">Cidade:</label>
-                        <input type="text" name="cidade" id="cidade" maxlength="60" class="form-control" required>
+                        <input type="text" name="cidade" id="cidade" maxlength="50" class="form-control" required>
 
                         <label for="pixKey" class="mt-3">Chave Pix para doações:</label>
-                        <input type="text" name="pixKey" id="pixKey" maxlength="60" class="form-control" required>
+                        <input type="text" name="pixKey" id="pixKey" maxlength="32" class="form-control" required>
 
                         <label for="titular" class="mt-3">Titular da chave Pix:</label>
-                        <input type="text" name="titular" id="titular" maxlength="255" class="form-control" required>
+                        <input type="text" name="titular" id="titular" maxlength="100" class="form-control" required>
 
                         <label for="image" class="mt-3">Imagem de capa</label>
                         <input type="file" name="image" id="image" class="form-control" onchange="validateCapa()"
@@ -62,12 +64,11 @@
 
 
                         <label for="descricao" class="mt-3">Descrição da campanha</label><br>
-                        <textarea name="descricao" id="descricao" class="form-control" required></textarea>
+                        <textarea name="descricao" id="descricao" class="form-control" maxlength="240"
+                            required></textarea>
 
-                        
-
-                        <button type="submit"
-                            class="btn bg-verde-agua w-100 text-white mt-3 rounded-pill"><b>Criar</b></button>
+                        <button type="submit" class="btn bg-verde-agua w-100 text-white mt-3 rounded-pill"
+                            onclick="sendForm()"><b>Criar</b></button>
 
                     </form>
                 </div>
@@ -139,16 +140,37 @@
             function AtivaEndereco() {
                 const elemento = document.getElementById('div_endereco')
 
-                if (elemento.style.display === 'none'){
+                if (elemento.style.display === 'none') {
                     elemento.style.display = 'block'
-                }else{
+                } else {
                     elemento.style.display = 'none'
                 }
 
             }
 
-            function nome_att(){
+            function nome_att() {
                 document.getElementById("nome_preview").innerText = document.getElementById('nome').value;
+            }
+
+            function sendForm() {
+                const nome = document.querySelector("#nome").value
+                const tel = document.querySelector("#tel").value
+                const email = document.querySelector("#email").value
+                const data_fim = document.querySelector("#data_fim").value
+                const cidade = document.querySelector("#cidade").value
+                const pixkey = document.querySelector("#pixKey").value
+                const titular = document.querySelector("#titular").value
+                const descricao = document.querySelector("#descricao").value
+
+                if (nome != '' && tel != '' && email != '' && data_fim != '' && cidade != '' && pixkey != '' && titular != '' &&
+                    descricao != '') {
+                    document.querySelector("#form > button").disabled = true
+                    document.querySelector("#form > button").innerHTML = `<span class="spinner-border"></span>`
+                    document.querySelector('#form').submit()
+                } else {
+                    alert('Preencha todos os campos para salvar.')
+                }
+
             }
         </script>
 

@@ -15,15 +15,15 @@
                     <h3>
                         Crie sua instituição
                     </h3>
-                    <form action="/criarInstitutes" method="POST" enctype="multipart/form-data">
+                    <form action="/criarInstitutes" method="POST" enctype="multipart/form-data" id="form">
                         @csrf
 
                         <label for="cnpj" class="mt-3">CNPJ da Instituição</label>
                         <input type="text" name="cnpj" id="cnpj" class="form-control" required
-                            onchange="checkCnpj(this.value)" data-mask="00.000.000/0000-00">
+                            onchange="checkCnpj(this.value)" data-mask="00.000.000/0000-00" maxlength="18">
 
                         <label for="nome" class="mt-3">Nome da instituição</label>
-                        <input type="text" name="nome" id="nome" maxlength="255" class="form-control" required oninput="nome_att()">
+                        <input type="text" name="nome" id="nome" maxlength="50" class="form-control" required oninput="nome_att()">
 
 
                         <label for="categoria" class="mt-3">Categoria</label>
@@ -34,46 +34,46 @@
                         </select>
 
                         <label for="telefone" class="mt-3">Telefone de contato</label>
-                        <input type="tel" name="telefone" maxlenght="15" id="telefone" class="form-control" required>
+                        <input type="text" name="telefone" maxlength="14" id="telefone" class="form-control" data-mask="(00)00000-0000" required>
 
                         <label for="email" class="mt-3">E-mail de contato</label>
-                        <input type="email" name="email" id="email" maxlength="255" class="form-control" required>
+                        <input type="email" name="email" id="email" maxlength="100" class="form-control" required>
 
                         <label for="logradouro" class="mt-3">Endereço do local</label>
-                        <input type="text" name="logradouro" id="logradouro" maxlength="255" class="form-control" required>
+                        <input type="text" name="logradouro" id="logradouro" maxlength="100" class="form-control" required>
 
                         <div class="form-group row">
 
                             <div class="col-md-8">
                                 <label for="municipio" class="mt-3">Cidade</label>
-                                <input type="text" name="municipio" id="municipio" maxlength="60" class="form-control" required>
+                                <input type="text" name="municipio" id="municipio" maxlength="50" class="form-control" required>
                             </div>
 
                             <div class="col-md-4">
                                 <label for="uf" class="mt-3">Estado</label>
-                                <input type="text" name="uf" id="uf" maxlength="30" class="form-control" required>
+                                <input type="text" name="uf" id="uf" maxlength="2" class="form-control" required>
                             </div>
                         </div>
 
-                        <label for="pixKey" class="mt-3">Chave Pix para doações:</label>
-                        <input type="text" name="pixKey" id="pixKey" maxlength="60" class="form-control" required>
+                        <label for="pixKey" class="mt-3">Chave Pix para doações</label>
+                        <input type="text" name="pixKey" id="pixKey" maxlength="32" class="form-control" required>
 
-                        <label for="titular" class="mt-3">Titular da chave Pix:</label>
-                        <input type="text" name="titular" id="titular" maxlength="255" class="form-control" required>
+                        <label for="titular" class="mt-3">Titular da chave Pix</label>
+                        <input type="text" name="titular" id="titular" maxlength="100" class="form-control" required>
 
                         <label for="image" class="mt-3">Imagem de capa</label>
                         <input type="file" name="image" id="image" class="form-control" onchange="validateCapa()"
                             accept="image/*">
 
-                        <label for="image_perfil" class="mt-3">Imagem de perfil:</label>
+                        <label for="image_perfil" class="mt-3">Imagem de perfil</label>
                         <input type="file" name="image_perfil" id="image_perfil" class="form-control"
                             onchange="validatePerfil()" accept="image/*">
 
-                        <label for="descricao" class="mt-3">Descrição da instituição</label><br>
-                        <textarea name="descricao" id="descricao" class="form-control" required></textarea>
+                        <label for="descricao" class="mt-3">Descrição da instituição <span id="desc_maxlength">(240)</span></label><br>
+                        <textarea name="descricao" id="descricao" class="form-control" maxlength="240" oninput="desc_length(this.value.length)" required></textarea>
 
                         <button type="submit"
-                            class="btn bg-verde-agua w-100 text-white mt-3 rounded-pill"><b>Criar</b></button>
+                            class="btn bg-verde-agua w-100 text-white mt-3 rounded-pill" onclick="sendForm()"><b>Criar</b></button>
 
                     </form>
                 </div>
@@ -162,6 +162,33 @@
             function nome_att() {
                 document.getElementById("nome_preview").innerText = document.getElementById('nome').value;
             }
+
+            function desc_length(length){
+                document.querySelector("#desc_maxlength").innerText = `(${240 - length })`
+            }
+
+            function sendForm() {
+                const cnpj = document.querySelector("#cnpj").value
+                const nome = document.querySelector("#nome").value
+                const tel = document.querySelector("#telefone").value
+                const email = document.querySelector("#email").value
+                const logradouro = document.querySelector("#logradouro").value
+                const cidade = document.querySelector("#municipio").value
+                const uf = document.querySelector("#uf").value
+                const pixkey = document.querySelector("#pixKey").value
+                const titular = document.querySelector("#titular").value
+                const descricao = document.querySelector("#descricao").value
+
+                if (cnpj != '' && nome != '' && tel != '' && email != '' && logradouro != '' && cidade != '' && uf != '' && pixkey != '' && titular != '' &&
+                    descricao != '') {
+                    document.querySelector("#form > button").disabled = true
+                    document.querySelector("#form > button").innerHTML = `<span class="spinner-border"></span>`
+                    document.querySelector('#form').submit()
+                } else {
+                    alert('Preencha todos os campos para salvar.')
+                }
+
+            }
         </script>
 
         {{-- Scripts da API de CNPJ --}}
@@ -182,18 +209,16 @@
                         //Política de mesma origem.
 
                         success: function(data) {
-
-                            console.log(data);
-
                             if (data.nome == undefined) {
                                 alert(data.status + ' ' + data.message);
                             } else {
-                                document.getElementById('nome').value = data.nome;
+                                document.getElementById('nome').value = data.nome.slice(0,50);
                                 document.getElementById('email').value = data.email;
-                                document.getElementById('telefone').value = data.telefone;
+                                document.getElementById('telefone').value = data.telefone.replace(' ','').slice(0,14);
                                 document.getElementById('logradouro').value = data.logradouro;
                                 document.getElementById('municipio').value = data.municipio;
                                 document.getElementById('uf').value = data.uf;
+                                nome_att()
                             }
 
                         }

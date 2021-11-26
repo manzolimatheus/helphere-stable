@@ -15,20 +15,20 @@ class CreateInstitutes extends Migration
     {
         Schema::create('institutes', function (Blueprint $table) {
             $table->id();
-            $table->string('cnpj')->default('0')->unique;
-            $table->string('nome_instituicao');
+            $table->string('cnpj', 18)->default('0')->unique();
+            $table->string('nome_instituicao', 50);
             $table->unsignedBigInteger('id_criador');
             $table->unsignedBigInteger('id_categoria');
             $table->string('telefone', 14);
-            $table->string('email')->unique;
-            $table->string('municipio')->default('0');
-            $table->string('uf')->default('0');
-            $table->string('logradouro');
-            $table->string('pixKey');
-            $table->string('titular');
+            $table->string('email', 100);
+            $table->string('municipio', 50)->default('0');
+            $table->string('uf', 2)->default('0');
+            $table->string('logradouro', 100);
+            $table->string('pixKey', 32);
+            $table->string('titular', 100);
             $table->string('image');
             $table->string('image_perfil')->nullable();
-            $table->text('descricao');
+            $table->text('descricao', 240);
             $table->integer('visualizacoes')->default('0');
             $table->timestamps();
         });

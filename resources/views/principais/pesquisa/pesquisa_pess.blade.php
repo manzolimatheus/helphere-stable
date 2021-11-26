@@ -8,7 +8,7 @@
 
         {{-- Botões de alternar entre pessoas e instituições --}}
         <div class="row">
-            <div class="col-sm-4 bg-light rounded">
+            <div class="col-sm-4 bg-white rounded">
                 <div class="text-center mt-3">
 
                     <a href="/pesquisa?q={{ $pesquisa }}" class="w-100">

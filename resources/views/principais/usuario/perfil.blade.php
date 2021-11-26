@@ -78,7 +78,7 @@
                     </div>
                 @endif
 
-                {{-- Listando instituições do usuário --}}
+                {{-- Listando campanhas do usuário --}}
                 @if (count($campanhas) > 0)
                     <div class="container bg-white rounded shadow p-3 mt-3">
                         <div class="container mb-3">
@@ -113,9 +113,9 @@
                         {{-- Formulário --}}
                         <form class="mb-3" action="/post_user" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <label for="text">Mensagem</label>
+                            <label for="text">Mensagem <span id="post_length">(240)</span></label>
                             <textarea name="data" id="text" class="form-control" required
-                                placeholder="O que você deseja compartilhar com a comunidade?"></textarea>
+                                placeholder="O que você deseja compartilhar com a comunidade?" oninput="att_postLength(this.value.length)" maxlength="240"></textarea>
                             <div class="row mt-3">
                                 <label for="image">
                                     <ion-icon name="image-outline" class="text-success me-2"></ion-icon>Enviar imagem
@@ -226,6 +226,10 @@
                 alert("Somente imagens com extensão .jpg, .jpeg, .png e .gif são permitidas!");
                 document.getElementById("image").value = '';
             }
+        }
+
+        function att_postLength(length){
+            document.querySelector("#post_length").innerText = `(${240 - length })`
         }
     </script>
 @endsection

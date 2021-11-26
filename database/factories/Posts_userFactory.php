@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Posts_user;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class Posts_userFactory extends Factory
@@ -22,8 +23,8 @@ class Posts_userFactory extends Factory
     public function definition()
     {
         return [
-            'id_poster' => random_int(1,1000),
-            'data'=> $this->faker->paragraph,
+            'id_poster' => random_int(1,User::count()), 
+            'data' => $this->faker->paragraph,
         ];
     }
 }

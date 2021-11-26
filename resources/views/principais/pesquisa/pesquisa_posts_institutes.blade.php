@@ -6,7 +6,7 @@
 
     <div class="container-fluid shadow rounded">
         <div class="row">
-            <div class="col-sm-4 bg-light rounded">
+            <div class="col-sm-4 bg-white rounded">
 
                 {{-- Botões de alternar entre pessoas e instituições --}}
                 <div class="text-center mt-3">

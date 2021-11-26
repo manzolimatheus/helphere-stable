@@ -16,16 +16,16 @@ class CreateCampanhasTable extends Migration
         Schema::create('campanhas', function (Blueprint $table) {
             $table->id();
             $table->integer("id_criador");
-            $table->string("nome");
+            $table->string("nome", 50);
             $table->unsignedBigInteger("id_categoria");
-            $table->string("telefone");
-            $table->string("email");
-            $table->string("endereco")->nullable();
+            $table->string("telefone", 14);
+            $table->string("email", 100);
+            $table->string("endereco", 100)->nullable();
             $table->date("data_fim");
             $table->string("img_path");
-            $table->string("cidade");
-            $table->string("pixKey");
-            $table->string("titular");
+            $table->string("cidade", 50);
+            $table->string("pixKey", 32);
+            $table->string("titular", 100);
             $table->text("descricao");
             $table->integer("visualizacoes")->default(0);
             $table->timestamps();

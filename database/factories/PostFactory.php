@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Institute;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -22,8 +24,8 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'id_institute' => random_int(1,1000),
-            'id_poster' => random_int(1,1000),
+            'id_institute' => random_int(1,Institute::count()),
+            'id_poster' => random_int(1, User::count()),
             'data'=> $this->faker->paragraph,
         ];
     }

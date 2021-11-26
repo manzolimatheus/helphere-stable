@@ -211,6 +211,6 @@ class CampaignsController extends Controller
 
         $campanha->update($dados);
 
-        return redirect('/gerenciar')->with('msg', 'Instituição atualizada com sucesso!');
+        return redirect('/gerenciar')->with('msg', 'Campanha atualizada com sucesso!');
     }
 }
