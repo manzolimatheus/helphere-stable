@@ -16,7 +16,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <form action="/doarCampanha" method="POST" enctype="multipart/form-data">
+                    <form action="/doarCampanha" method="POST" enctype="multipart/form-data" id="formPix">
                         @csrf
 
                         <div hidden>
@@ -34,11 +34,11 @@
                         <div>
                             <label for="valorDoado" class="mt-3">Digite o valor a ser doado:</label>
                             <input type="number" name="valorDoado" id="valorDoado" class="form-control"
-                                placeholder="Separe o real dos centavos utilizando '.'">
+                                placeholder="Separe o real dos centavos utilizando '.'" required>
                         </div>
                         <br>
 
-                        <button type="submit" class="btn bg-verde-agua w-100 text-white mt-3 rounded-pill"><b>Gerar Código
+                        <button type="submit" class="btn bg-verde-agua w-100 text-white mt-3 rounded-pill" onclick="postPix()" id="buttonPix"><b>Gerar Código
                                 Pix</b></button>
 
                     </form>
@@ -79,7 +79,7 @@
                                 </div>
                                 <h6>Compartilhe também nas redes sociais!</h6>
                                 <a class="btn bg-cinzaEscuro rounded-pill" target="_blank"
-                                    href="https://twitter.com/intent/tweet?text=Olá! Estou utilizando o HelpHere para ajudar pessoas e ser ajudado. Venha fazer o bem você também! 😊HelpHere&hashtags=HelpHere">
+                                    href="https://twitter.com/intent/tweet?text=Olá! Estou utilizando o HelpHere para ajudar pessoas e ser ajudado. Venha fazer o bem você também! http://helphere.online 😊HelpHere&hashtags=HelpHere">
                                     <ion-icon name="logo-twitter" class="me-2 text-info"></ion-icon><b>Tweet</b>
                                 </a>
                             </div>
@@ -255,5 +255,19 @@
             /* Alert the copied text */
             alert("Texto copiado para a área de transferência!");
         }
+        
+        function postPix() {
+            const valorDoado = document.querySelector("#valorDoado").value
+            const buttonPix = document.querySelector("#buttonPix")
+                
+                
+            if (valorDoado != '') {
+                buttonPix.disabled = true
+                buttonPix.innerHTML = `<span class="spinner-border"></span>`
+                document.querySelector('#formPix').submit()
+            } else {
+                alert('Preencha o valor corretamente.')
+            }
+            }
     </script>
 @endsection
