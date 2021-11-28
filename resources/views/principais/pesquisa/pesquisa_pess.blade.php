@@ -62,7 +62,7 @@
 
                                 <div class="row p-3">
                                     @foreach ($usuarios as $usuario)
-                                        <div class="col-sm p-1">
+                                        <div class="col-sm-6 p-1">
                                             <div class="card shadow">
                                                 <div class="container text-center p-3">
                                                     @if ($usuario->profile_photo_path == '')
@@ -70,7 +70,7 @@
                                                             alt="Imagem de perfil" class="card-image">
                                                     @else
                                                         <img src="/storage/{{ $usuario->profile_photo_path }}"
-                                                            alt="Imagem do usuário" class="card-img-top">
+                                                            alt="Imagem do usuário" class="card-image">
                                                     @endif
                                                 </div>
                                                 <div class="card-body text-center">
