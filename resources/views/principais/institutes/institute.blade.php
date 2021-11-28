@@ -16,7 +16,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <form action="/doar" method="POST" enctype="multipart/form-data">
+                    <form action="/doar" method="POST" enctype="multipart/form-data" id="formPix">
                         @csrf
 
                         <div hidden>
@@ -33,12 +33,12 @@
 
                         <div>
                             <label for="valorDoado" class="mt-3">Digite o valor a ser doado:</label>
-                        <input type="number" step="0.01" min="0.01" max="1000" name="valorDoado" id="valorDoado" class="form-control"
-                                placeholder="Separe o real dos centavos utilizando '.'">
+                        <input type="number" step="0.01" min="0.01" max="1000" maxlength="4" name="valorDoado" id="valorDoado" class="form-control"
+                                placeholder="Separe o real dos centavos utilizando '.'" oninput="checkValue(this.value)" required>
                         </div>
                         <br>
 
-                        <button type="submit" class="btn bg-verde-agua w-100 text-white mt-3 rounded-pill"><b>Gerar Código
+                        <button type="submit" class="btn bg-verde-agua w-100 text-white mt-3 rounded-pill" onclick="postPix()" id="buttonPix"><b>Gerar Código
                                 Pix</b></button>
 
                     </form>
@@ -79,7 +79,7 @@
                                 </div>
                                 <h6>Compartilhe também nas redes sociais!</h6>
                                 <a class="btn bg-cinzaEscuro rounded-pill" target="_blank"
-                                    href="https://twitter.com/intent/tweet?text=Olá! Estou utilizando o HelpHere para ajudar pessoas e ser ajudado. Venha fazer o bem você também! 😊HelpHere&hashtags=HelpHere">
+                                    href="https://twitter.com/intent/tweet?text=Olá! Estou utilizando o HelpHere para ajudar pessoas e ser ajudado. Venha fazer o bem você também! http://helphere.online 😊HelpHere&hashtags=HelpHere">
                                     <ion-icon name="logo-twitter" class="me-2 text-info"></ion-icon><b>Tweet</b>
                                 </a>
                             </div>
@@ -100,7 +100,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/enviar_mensagem/{{ $criador['id'] }}" method="post">
+                    <form action="/enviar_mensagem/{{ $criador['id'] }}" method="post" id="formMessage">
                         @csrf
 
                         <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
@@ -117,12 +117,12 @@
                         </div>
                         <br>
                         <label for="title">Título do recado</label>
-                        <input type="text" name="title" id="title" class="form-control" required>
+                        <input type="text" name="title" id="title" class="form-control" maxlength="50" required>
 
-                        <label for="data" class="mt-3">Conteúdo do recado</label>
-                        <textarea name="data" id="data" required class="form-control"></textarea>
+                        <label for="data" class="mt-3">Conteúdo do recado <span id="desc_maxlength">(240)</span></label>
+                        <textarea name="data" id="data" required class="form-control" maxlength="240" oninput="desc_length(this.value.length)"></textarea>
 
-                        <button type="submit" class="btn btn-success w-100 rounded-pill mt-3">
+                        <button type="submit" class="btn btn-success w-100 rounded-pill mt-3" onclick="sendMessage()" id="buttonMessage">
                             <ion-icon name="send"></ion-icon>
                         </button>
                     </form>
@@ -420,5 +420,45 @@
         function att_postLength(length){
             document.querySelector("#post_length").innerText = `(${240 - length })`
         }
+        
+        function postPix() {
+                const valorDoado = document.querySelector("#valorDoado").value
+                const buttonPix = document.querySelector("#buttonPix")
+                
+                
+                if (valorDoado != '') {
+                    buttonPix.disabled = true
+                    buttonPix.innerHTML = `<span class="spinner-border"></span>`
+                    document.querySelector('#formPix').submit()
+                } else {
+                    alert('Preencha o valor corretamente.')
+                }
+        }
+        
+        function sendMessage() {
+                const title = document.querySelector("#title").value
+                const content = document.querySelector("#data").value
+                const button = document.querySelector("#buttonMessage")
+                
+                
+                if (content != '' && title != '') {
+                    button.disabled = true
+                    button.innerHTML = `<span class="spinner-border"></span>`
+                    document.querySelector('#formMessage').submit()
+                } else {
+                    alert('Preencha o recado corretamente.')
+                }
+        }
+        
+        function checkValue(value){
+            if (value > 1000){
+                document.querySelector("#valorDoado").value = 1000
+                alert('O valor máximo por transação é de R$1000!')
+            }
+        }
+        
+        function desc_length(length){
+                document.querySelector("#desc_maxlength").innerText = `(${240 - length })`
+           }
     </script>
 @endsection
