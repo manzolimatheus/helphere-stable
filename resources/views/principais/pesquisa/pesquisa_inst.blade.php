@@ -65,7 +65,7 @@
                                 {{-- Listando instituições --}}
                                 <div class="row p-3">
                                     @foreach ($institutes as $institute)
-                                        <div class="col-sm p-1">
+                                        <div class="col-sm-6 p-1">
                                             <div class="card shadow" style="width: auto">
                                                 <div class="card-img-top background-fix p-3 text-center"
                                                     style="background-image: url('{{ $institute->image }}'); height: fit-content">
