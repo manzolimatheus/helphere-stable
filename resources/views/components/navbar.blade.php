@@ -41,8 +41,8 @@
                         @endif
                     </div>
                     <div class="col-8">
-                        {{ Auth::user()->name }}
-                        <p class="text-muted">{{ Auth::user()->email }}</p>
+                         <span class="text-truncate">{{ Auth::user()->name }}</span>
+                        <p class="text-muted text-truncate">{{ Auth::user()->email }}</p>
                     </div>
                 </div>
             </div>
