@@ -65,7 +65,7 @@
                                 {{-- Listando campanhas --}}
                                 <div class="row p-3">
                                     @foreach ($campanhas as $campanha)
-                                        <div class="col-sm p-1">
+                                        <div class="col-sm-6 p-1">
                                             <div class="card shadow" style="width: auto">
                                                 <img src="{{ $campanha->img_path }}" class="card-img-top">
                                                 <div class="card-body text-center">
